@@ -2,16 +2,16 @@ spring:
   application:
     name: sos-ambulance-service
   profiles:
-    active: ${SPRING_PROFILE:dev}
+    active: prod
 
   # Redis Configuration
   data:
     redis:
-      url: ${REDIS_URL:redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415}
+      url: redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415
   
   # Kafka Configuration
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:shortline.proxy.rlwy.net:57987}
+    bootstrap-servers: shortline.proxy.rlwy.net:57987
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -32,7 +32,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+      defaultZone: https://servermedibridgeprod-production.up.railway.app/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:

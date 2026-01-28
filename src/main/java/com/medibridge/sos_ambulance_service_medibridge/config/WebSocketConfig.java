@@ -41,8 +41,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         // CORS is handled by API Gateway, but SockJS needs to accept the Origin header
         // forwarded
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("*")
-                .withSockJS();
+                .setAllowedOrigins("http://localhost:3000","https://medibridge-prod.vercel.app/")
+                .withSockJS()
+                .setHeartbeatTime(45000) // Server heartbeat every 45 seconds
+                .setDisconnectDelay(10000) // Wait 10s before disconnecting idle sessions
+                .setStreamBytesLimit(512 * 1024)
+                .setHttpMessageCacheSize(1000)
+                .setSessionCookieNeeded(false)
+                .setWebSocketEnabled(true);
     }
 
     @Override
